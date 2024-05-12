@@ -35,7 +35,7 @@ func Initialize(path string) {
 	viper.SetConfigFile(path)
 	viper.AddConfigPath(".")
 
-	viper.SetDefault("PORT", ":12345")
+	viper.SetDefault("PORT", ":4510")
 	viper.SetDefault("READ_TIMEOUT", 30)
 	viper.SetDefault("WRITE_TIMEOUT", 30)
 	viper.SetDefault("REQUEST_TIMEOUT", 30)

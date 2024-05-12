@@ -9,7 +9,7 @@ $ ./Asiayo
 
 Access the OpenAPI
 ```
-localhost:12345/swagger
+localhost:4510/swagger
 ```
 
 Build the docker image
@@ -19,7 +19,7 @@ $ sudo docker build . -t asiayo
 
 Run the docker image
 ```
-$ sudo docker run asiayo:latest
+$ sudo docker run --rm -d -p 4510:4510 asiayo:latest
 ```
 
 Run the test and export to txt file
