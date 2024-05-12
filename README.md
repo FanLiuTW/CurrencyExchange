@@ -4,7 +4,12 @@ A Simple Golang Server For Currency Exchange
 Run locally
 ```
 $ make install ENV=local
-$ ./BusServer
+$ ./Asiayo
+```
+
+Access the OpenAPI
+```
+localhost:12345/swagger
 ```
 
 Build the docker image
