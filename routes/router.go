@@ -3,9 +3,11 @@ package routes
 import (
 	"Asiayo/controllers"
 	v1 "Asiayo/controllers/v1"
+	"Asiayo/doc"
 	"Asiayo/middleware"
 	"net/http"
 
+	"github.com/flowchartsman/swaggerui"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -25,6 +27,10 @@ func InitRouter() *gin.Engine {
 		panic(err)
 	}
 	router.Use(cors.New(config))
+
+	if mode := gin.Mode(); mode == gin.DebugMode {
+		router.GET("/swagger/*any", gin.WrapH(http.StripPrefix("/swagger", swaggerui.Handler(doc.Spec))))
+	}
 
 	router.GET("/heartBeat", controllers.HeartBeat) // check alive
 

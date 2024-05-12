@@ -1,0 +1,63 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Currency Exchange Server API
+tags:
+  - name: Backend
+    description: internal backend apis
+paths:
+  /heartBeat:
+    get:
+      summary: HeartBeat
+      responses:
+        200:
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+  /api/v1/currency/exchange:
+    get:
+      tags:
+        - Backend
+      summary: Get Currency Exchange
+      parameters:
+        - description: Currency Exchange Source
+          in: query
+          name: source
+          required: true
+          schema:
+            type: string
+        - description: Currency Exchange Target
+          in: query
+          name: source
+          required: true
+          schema:
+            type: string
+        - description: Currency Exchange Amount
+          in: query
+          name: amount
+          required: true
+          schema:
+            type: number
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: ./schemas.yaml#/v1.getCurrencyExchangeResponse
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 500
+                msg: Fail
+                data: null
+components:
+  schemas:
+    $ref: ./schemas.yaml

@@ -1,0 +1,39 @@
+# common response structure
+SuccessResponse:
+  type: object
+  properties:
+    code:
+      type: integer
+      example: 200
+    msg:
+      type: string
+      example: success
+    data: {}
+ErrorResponse:
+  type: object
+  properties:
+    code:
+      type: integer
+      example: 500
+    msg:
+      type: string
+      example: Fail
+    data:
+      example: "some error string"
+
+# normal self-defined structure
+v1.getCurrencyExchangeResponse:
+  type: object
+  properties:
+    code:
+      type: integer
+      example: 200
+    data:
+      type: object
+      properties:
+        amount:
+          type: string
+          example: "1765.53"
+    msg:
+      type: string
+      example: success
