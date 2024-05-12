@@ -12,10 +12,15 @@ const (
 	ERROR          = http.StatusInternalServerError
 )
 
+const (
+	DECIMAL_INVALID = iota + 10000
+)
+
 var msgFlags = map[int]string{
-	SUCCESS:        "success",
-	INVALID_PARAMS: "invalid params error",
-	ERROR:          "fail",
+	SUCCESS:         "success",
+	INVALID_PARAMS:  "invalid params error",
+	ERROR:           "fail",
+	DECIMAL_INVALID: "invalid amount decimal",
 }
 
 type Response struct {

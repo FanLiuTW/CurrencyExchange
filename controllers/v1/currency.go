@@ -27,6 +27,19 @@ func CurrencyExchange(c *gin.Context) {
 		return
 	}
 
+	// validate amount
+	err, isValid := ValidateFloatDecimal(params.Amount)
+	if err != nil {
+		constant.ResponseWithData(c, http.StatusOK, constant.ERROR, err.Error())
+		return
+	}
+
+	// if amount is more than two decimal return error
+	if !isValid {
+		constant.ResponseWithData(c, http.StatusOK, constant.DECIMAL_INVALID, nil)
+		return
+	}
+
 	// currency rates
 	staticRates := map[string]map[string]float64{
 		"TWD": {
@@ -56,5 +69,5 @@ func CurrencyExchange(c *gin.Context) {
 		return
 	}
 
-	constant.ResponseWithData(c, http.StatusOK, constant.SUCCESS, convertedAmount)
+	constant.ResponseWithData(c, http.StatusOK, constant.SUCCESS, gin.H{"amount": convertedAmount})
 }
